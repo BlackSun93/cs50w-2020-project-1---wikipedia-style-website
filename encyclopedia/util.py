@@ -24,27 +24,27 @@ def list_search(term):
 
 #and term in filename)
 
-def save_entry(title, content):
-    print(title + "util")
-    print(content + "util")
+def save_entry(subject, content):
+ 
     """
-    Saves an encyclopedia entry, given its title and Markdown
-    content. If an existing entry with the same title already exists,
+    Saves an encyclopedia entry, given its subject and Markdown
+    content. If an existing entry with the same subject already exists,
     it is replaced.
     """
-    filename = f"entries/{title}.md"
+    filename = f"entries/{subject}.md"
     if default_storage.exists(filename):
         default_storage.delete(filename)
     default_storage.save(filename, ContentFile(content))
 
 
-def get_entry(title):
+def get_entry(subject):
+    print(subject)
     """
-    Retrieves an encyclopedia entry by its title. If no such
+    Retrieves an encyclopedia entry by its subject. If no such
     entry exists, the function returns None.
     """
     try:
-        f = default_storage.open(f"entries/{title}.md")
+        f = default_storage.open(f"entries/{subject}.md")
         
         return f.read().decode("utf-8")
     except FileNotFoundError:
